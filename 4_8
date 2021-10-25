@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cmath>
+
+int main(){
+	using namespace std;
+	int ans1_1 = 0;
+	int ans1_2 = 0;
+	int ans2_1 = 0, ans2_2 = 0;
+	double ans3_sum0 = 0;
+	double ans4_sum1 = 0;
+	double ans5_sum2 = 0;
+	double max_sum = 0, min_sum = 10000, max_com = 0, min_com = 10000;
+	int A[3][4] = {	{5, 2, 0, 10}, 
+					{3, 5, 2, 5}, 
+					{20, 0, 0, 0}};
+	double B[4][2] = { 	{1.20, 0.50}, 
+						{2.80, 0.40},
+						{5.00, 1.00}, 
+						{2.00, 1.50}};
+	double C[3][2] = {	{0,0}, 
+						{0, 0},
+						{0, 0}};
+	double curr_s = 0;
+	for (int i =0; i < 3; i++){
+		for(int j = 0; j < 2; j++){
+			for (int s =0; s < 2; s++){
+				curr_s += 	A[i][s]*B[s][j]; 
+			}
+			C[i][j] = curr_s;
+		}
+	}
+
+
+
+	for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 2; j++){
+			cout << C[i][j] << "  | ";
+			ans5_sum2 += C[i][j];
+		}
+		cout << "\n";
+	}
+	for (int i = 0; i < 3; i++)
+{		if (C[i][0] > max_sum){
+				max_sum = C[i][0];
+		}
+		if (C[i][0] < min_sum){
+				min_sum = C[i][0];
+		}
+		if (C[i][1] > max_com){
+			max_com = C[i][1];
+		}
+		if (C[i][1] < min_com){
+			min_com = C[i][1];
+		}
+	}
+	for (int i = 0; i < 3; i++){
+		if (C[i][0] == max_sum){
+			ans1_1 = i;
+		}
+		if (C[i][0] == min_sum){
+			ans1_2 = i;
+		}
+		if (C[i][1] == max_com){
+			ans2_1 = i;
+		}
+		if (C[i][1] == min_com){
+			ans2_2 = i;
+		}
+		ans3_sum0 += C[i][0];
+		ans4_sum1 += C[i][1];
+	}
+	cout << max_sum << "\n";
+	cout << min_sum << "\n";
+	cout << "Продавцы с макс и мин суммами соответсвенно  " <<ans1_1 + 1 << "  , " << ans1_2 + 1<< "\n";
+	cout << "Продавцы с макс и мин коммисионными соответсвенное  " << ans2_1 + 1 << "  ,  " << ans2_2 + 1 << "\n";
+	cout << "Общая сумма денег вырученных за все товары   " <<ans3_sum0 << "\n"; 
+	cout << "Общая сумма комиссионных " << ans4_sum1 << "\n";
+	cout << "Общая сумма денег, прошедших через руки продавцов " << ans5_sum2 << "\n"; 
+	return 0;
+}
