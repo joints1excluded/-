@@ -1,0 +1,41 @@
+#include <iostream>
+
+int first_sort(int a, int b){
+	while(a!=b){
+		if (a > b){
+			a = a - b;
+		}else{
+			b = b - a;
+		}
+	}
+	return a;
+}
+
+int second_sort(int a, int b){
+	while (a!=0 && b!=0){
+		if (a > b){
+			a = a%b;
+		}else{
+			b = b%a;
+		}
+	}
+	return a+b;
+}
+
+int main(){
+	using namespace std;
+	int a, b;
+	int option;
+	cin >> a >> b;
+	cout << "Choose your method 1 for (-), 2 for (/) " << "\n"; 
+	cin >> option;
+	if (option == 1){
+		cout << first_sort(a, b); 
+	}else{
+		if (option == 2){
+			cout << second_sort(a, b);
+		}else{
+			cout << "no such option";
+		}
+	}
+}
